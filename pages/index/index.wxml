@@ -8,7 +8,11 @@
             <text class="iconfont icon-Shape"></text>
             封装列表
       </view>
-      <view class="grid-item" bindtap="toDetail" wx:for="{{7}}" data-page="list-scroll-view/list-scroll-view">
+      <view class="grid-item" bindtap="toDetail" data-page="use_scroll_view/use_scroll_view">
+            <text class="iconfont icon-Shape"></text>
+            使用scroll-view
+      </view>
+      <view class="grid-item" bindtap="toDetail" wx:for="{{6}}" data-page="list-scroll-view/list-scroll-view">
             <text class="iconfont icon-weizhiwenjian"></text>
             还没想好干啥
       </view>

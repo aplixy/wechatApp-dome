@@ -1,8 +1,8 @@
-// pages/list-encap/list_encap.js
+// pages/use_scroll_view/use_scroll_view.js
+
 var listutil = require('../../utils/list_util.js');
 const PAGE_SIZE = 10;
 
-var test = 13;
 
 Page({
 
@@ -10,13 +10,31 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    windowHeight: 1463.2009345794393, 
+    menuBarHeight: 100,
+    infoType: 'InfoType1'
   },
+
+  searchByInfoType: function (event) {
+    var infoType = event.currentTarget.dataset.infoType;
+
+    var currentInfoType = this.data.infoType;
+    if (infoType == currentInfoType) {
+      return;
+    }
+
+    this.setData({
+      infoType: infoType
+    });
+    this.loadData();
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.getWindowHeight();
     listutil.init.call(this, {
       itemMaxLength: PAGE_SIZE,
       itemHeight: 2225, // item布局高度 * PAGE_SIZE
@@ -35,7 +53,7 @@ Page({
       answerD: '花泽香菜',
     }
     let list = Array(8).fill(obj)
-    
+
     listutil.deliverListData.call(this, list, isNew);
   },
 
@@ -78,19 +96,43 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-    // test变量用于观察最后一组数据显示情况
-    if (test-- >= 0) {
-      this.loadData(false);
-    }
-    
-  },
 
-  onPageScroll: listutil.onPageScroll, 
+  },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage() {
 
+  },
+
+  toScrollWindowBottom: function () {
+    this.loadData(false);
+
+  },
+
+  toScrollWindowTop: function () {
+
+  },
+
+  scroll: function (event) {
+    let scrollTop = event.detail.scrollTop;
+
+    listutil.exportObj.scrollFunc.call(this, scrollTop);
+  },
+
+  getWindowHeight: function() {
+    let that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        let clientHeight = res.windowHeight,
+          clientWidth = res.windowWidth,
+          rpxR = 750.0 / clientWidth;
+        var calc = clientHeight * rpxR;
+        that.setData({
+          windowHeight: calc
+        });
+      }
+    });
   }
 })

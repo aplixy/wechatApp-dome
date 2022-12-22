@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+  },
+  
+  "navigationBarTitleText": "使用<scroll-view>和<block>标签", 
+  "disableScroll":true
+}

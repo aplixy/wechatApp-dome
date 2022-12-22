@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/list-scroll-view/list-scroll-view",
-    "pages/list-encap/list_encap"
+    "pages/list-encap/list_encap",
+    "pages/use_scroll_view/use_scroll_view"
   ],
   "window": {
     "backgroundTextStyle": "light",
