@@ -1,6 +1,7 @@
 
   .first-item{
     height: 4520rpx;
+    /* height: 4450rpx; */
   }
   .item-list{
     margin-bottom: 20rpx;
